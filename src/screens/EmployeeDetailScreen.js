@@ -5,7 +5,7 @@ import {
     StyleSheet,
     Button,
     Alert,
-    TouchableOpacity
+    TouchableHighlight
 } from "react-native";
 import Communications from 'react-native-communications'
 import {connect} from 'react-redux'
@@ -38,16 +38,39 @@ class EmployeeDetail extends Component {
         const {getParam} = this.props.navigation
         return (
             <View style={styles.container}>
-                <Text>{getParam('id')}</Text>
-                <Text>{getParam('nama')}</Text>
-                <Text>{getParam('shift')}</Text>
-                <Text>{getParam('phone')}</Text>
-                <Button title='Delete' onPress={this.onBtnDelete}/>
-                <TouchableOpacity onPress={() => Communications.textWithoutEncoding(getParam('phone'), `Hello ${getParam('nama')}, Your upcoming shift is on ${getParam('shift')}`)}>
-                    <View style={styles.holder}>
-                        <Text style={styles.text}>Send a text/iMessage</Text>
+                <Text style={styles.text}>Employee Detail</Text>
+                <View style={{ alignSelf: 'stretch', flexDirection: 'row' }}>
+                    <View style={{ flex: 1, }}>
+                        <Text style={styles.content}>Nama</Text>
+                    </View> 
+                    <View style={{ flex: 1 }}>
+                        <Text style={styles.content}>Shift</Text>
                     </View>
-                </TouchableOpacity>
+                    <View style={{ flex: 1}}>
+                        <Text style={styles.content}>Phone</Text>
+                    </View>
+                </View>
+                <View style={{alignSelf: 'stretch', flexDirection: 'row' }}>
+                    <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                        <Text style={styles.content}>{getParam('nama')}</Text>
+                    </View> 
+                    <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                        <Text style={styles.content}>{getParam('shift')}</Text>
+                    </View>
+                    <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                        <Text style={styles.content}>{getParam('phone')}</Text>
+                    </View>
+                </View>
+                <View style={{flexDirection:"row", justifyContent:"space-between", marginTop:100, marginHorizontal:20}}>
+                    <TouchableHighlight onPress={this.onBtnDelete}
+                    style={{height : 50, width : 100 , borderWidth : 3, borderColor : "orange" ,backgroundColor : 'orange', justifyContent : "center", marginHorizontal:10}}>
+                    <Text style={{alignSelf : "center", color : 'white'}}>Delete</Text> 
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => Communications.textWithoutEncoding(getParam('phone'), `Hello ${getParam('nama')}, Your upcoming shift is on ${getParam('shift')}`)}
+                    style={{height : 50, width : 150 , borderWidth : 3, borderColor : "orange" ,backgroundColor : 'orange', justifyContent : "center"}}>
+                    <Text style={{alignSelf : "center", color : 'white'}}>Send a text/iMessage</Text> 
+                    </TouchableHighlight>
+                </View>
             </View>
         );
     }
@@ -69,7 +92,17 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
-    }
+    },
+    holder: {
+        flex: 0.25,
+        justifyContent: 'center',
+      },
+      text: {
+        fontSize: 32,
+      },
+      content: {
+        fontSize: 20,
+      },
 });
 
 
