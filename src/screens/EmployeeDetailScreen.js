@@ -43,7 +43,7 @@ class EmployeeDetail extends Component {
                 <Text>{getParam('shift')}</Text>
                 <Text>{getParam('phone')}</Text>
                 <Button title='Delete' onPress={this.onBtnDelete}/>
-                <TouchableOpacity onPress={() => Communications.text(getParam('phone'), `Hello ${getParam('nama')}, Your upcoming shift is on ${getParam('shift')}`)}>
+                <TouchableOpacity onPress={() => Communications.textWithoutEncoding(getParam('phone'), `Hello ${getParam('nama')}, Your upcoming shift is on ${getParam('shift')}`)}>
                     <View style={styles.holder}>
                         <Text style={styles.text}>Send a text/iMessage</Text>
                     </View>
