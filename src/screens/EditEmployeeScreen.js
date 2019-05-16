@@ -92,8 +92,7 @@ class EditEmployee extends Component {
                       <Picker 
                           style={{width : 120}} 
                           mode='dropdown'
-                          selectedValue={(this.state.selected && this.state.idEdit) ? this.state.selected : 
-                            (this.state.selected = '' && this.state.idEdit) ? this.state.data[this.state.idEdit].shift : null}
+                          selectedValue={ (this.state.idEdit && this.state.selected) ? this.state.selected : (this.state.idEdit && this.state.selected == '') ? this.state.data[this.state.idEdit].shift : null}
                           onValueChange={(value) => this.setState({selected : value})}>
                           <Picker.Item label='Monday' value='Mon'/>
                           <Picker.Item label='Tuesday' value='Tue'/>
