@@ -9,21 +9,24 @@ class AddEmployeeScreen extends Component {
     }
 
     onBtnAddEmployee = () => {
-        const db = Fire.database()
-        var manager =  db.ref(`/manager/${this.props.user.id}/employee`)
-
-        manager.push({
-              nama : this.inputNama,
-              phone : this.phone,
-              shift : this.state.selected
-        })
-        .then((res) => {
-          alert('New Employee Data Added')
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-        
+        if(this.inputNama && this.phone && this.state.selected){
+          const db = Fire.database()
+          var manager =  db.ref(`/manager/${this.props.user.id}/employee`)
+  
+          manager.push({
+                nama : this.inputNama,
+                phone : this.phone,
+                shift : this.state.selected
+          })
+          .then((res) => {
+            alert('New Employee Data Added')
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+        } else {
+          alert('Harus Masukkan Semua data')
+        } 
     }
 
 
